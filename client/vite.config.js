@@ -7,12 +7,13 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001'
+        target: 'https://onthefly-server.up.railway.app/',
+        changeOrigin: true
       },
       '/auth': {
-        target: 'http://localhost:3001'
+        target: 'https://onthefly-server.up.railway.app/',
+        changeOrigin: true
       }
-    },
-    origin: 'https://onthefly-server.up.railway.app'
+    }
   }
 })
