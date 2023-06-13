@@ -18,22 +18,24 @@ const App = () => {
   const [trips, setTrips] = useState([])
   const [destinations, setDestinations] = useState([])
   const [user, setUser] = useState([])
+  const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
 
   useEffect(() => {
     const getUser = async () => {
-      const response = await fetch('/auth/login/success', { credentials: 'include' } )
+      const response = await fetch(`${API_URL}/auth/login/success`, { credentials: 'include' } )
       const json = await response.json()
       setUser(json.user)
     }
 
     const fetchTrips = async () => {
-      const response = await fetch('/api/trips')
+      const response = await fetch(`${API_URL}/api/trips`)
+      // const response = await fetch('/api/trips')
       const data = await response.json()
       setTrips(data)
     }
 
     const fetchDestinations = async () => {
-      const response = await fetch('/api/destinations')
+      const response = await fetch(`${API_URL}/api/destinations`)
       const data = await response.json()
       setDestinations(data)
     }

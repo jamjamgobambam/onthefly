@@ -6,6 +6,7 @@ const CreateActivity = () => {
 
     const [activity, setActivity] = useState( { activity: '' } )
     const { trip_id } = useParams()
+    const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -29,7 +30,7 @@ const CreateActivity = () => {
             body: JSON.stringify(activity)
         }
 
-        fetch('/api/activities/' + trip_id, options)
+        fetch(`${API_URL}/api/activities/${trip_id}`, options)
         window.location.href = '/'
     }
 

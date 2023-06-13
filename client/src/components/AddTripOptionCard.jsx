@@ -4,6 +4,7 @@ import '../css/Card.css'
 const AddTripOptionCard = (props) =>  {
 
   const { destination_id } = useParams()
+  const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
 
   const addToTrip = async (event) => {
     event.preventDefault()
@@ -16,7 +17,7 @@ const AddTripOptionCard = (props) =>  {
       body: JSON.stringify({trip_id: props.id, destination_id: destination_id})
     }
   
-    fetch('/api/trips-destinations', options)
+    fetch(`${API_URL}/api/trips-destinations`, options)
     window.location.href = '/'
 }
 

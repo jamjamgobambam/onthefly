@@ -5,6 +5,7 @@ import '../css/EditTrip.css'
 const EditTrip = ( { data } ) => {
 
     const { id } = useParams()
+    const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
     const [trip, setTrip] = useState({
         id: 0,
         title: '',
@@ -54,7 +55,7 @@ const EditTrip = ( { data } ) => {
             body: JSON.stringify(trip)
         }
 
-        fetch('/api/trips/' + id, options)
+        fetch(`${API_URL}/api/trips/{$id}`, options)
         window.location.href = '/'
     }
 
@@ -65,7 +66,7 @@ const EditTrip = ( { data } ) => {
             method: 'DELETE'
         }
 
-        fetch('/api/trips/' + id, options)
+        fetch(`${API_URL}/api/trips/${id}`, options)
         window.location.href = '/'
     }
 

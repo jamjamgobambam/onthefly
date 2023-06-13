@@ -3,6 +3,7 @@ import '../css/CreateTrip.css'
 
 const CreateTrip = (props) => {
 
+    const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
     const [trip, setTrip] = useState({
         id: 0,
         title: '',
@@ -37,7 +38,7 @@ const CreateTrip = (props) => {
             body: JSON.stringify(trip)
         }
 
-        fetch('/api/trips', options)
+        fetch(`${API_URL}/api/trips`, options)
         window.location.href = '/'
     }
 

@@ -5,6 +5,7 @@ import '../css/CreateDestination.css'
 const CreateDestination = () => {
 
     const { trip_id } = useParams()
+    const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
     const [destination, setDestination] = useState({
         destination: '',
         description: '',
@@ -37,7 +38,7 @@ const CreateDestination = () => {
                 body: JSON.stringify(destination)
             }
         
-            const response = await fetch('/api/destinations', options)
+            const response = await fetch(`${API_URL}/api/destinations`, options)
             const data = await response.json()
             setDestination(data)
             return data.id
@@ -52,7 +53,7 @@ const CreateDestination = () => {
                 body: JSON.stringify({trip_id: trip_id, destination_id: destination_id})
             }
         
-            const response = await fetch('/api/trips-destinations', options)
+            const response = await fetch(`${API_URL}/api/trips-destinations`, options)
             const data = await response.json()
             return data
         }

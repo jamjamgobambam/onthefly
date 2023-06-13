@@ -7,6 +7,7 @@ import '../css/TripDetails.css'
 const TripDetails = ( { data } ) => {
 
     const { id } = useParams()
+    const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
     const [activities, setActivites] = useState([])
     const [destinations, setDestinations] = useState([])
     const [travelers, setTravelers] = useState([])
@@ -38,19 +39,19 @@ const TripDetails = ( { data } ) => {
         }
 
         const fetchActivities = async () => {
-            const response = await fetch('/api/activities/' + id)
+            const response = await fetch(`${API_URL}/api/activities/${id}`)
             const data = await response.json()
             setActivites(data)
         }
 
         const fetchDestinations = async () => {
-            const response = await fetch('/api/trips-destinations/destinations/' + id)
+            const response = await fetch(`${API_URL}/api/trips-destinations/destinations/${id}`)
             const data = await response.json()
             setDestinations(data)
         }
 
         const fetchTravelers= async () => {
-            const response = await fetch('/api/users-trips/users/' + id)
+            const response = await fetch(`${API_URL}/api/users-trips/users/${id}`)
             const data = await response.json()
             setTravelers(data)
         }

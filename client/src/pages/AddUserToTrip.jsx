@@ -6,6 +6,7 @@ const AddUserToTrip = () => {
 
     const [username, setUsername] = useState( { username: '' } )
     const { trip_id } = useParams()
+    const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -29,7 +30,7 @@ const AddUserToTrip = () => {
             body: JSON.stringify(username),
         }
         
-        fetch('/api/users-trips/create/' + trip_id, options)
+        fetch(`${API_URL}/api/users-trips/create/${trip_id}`, options)
 
         window.location = '/'
     }

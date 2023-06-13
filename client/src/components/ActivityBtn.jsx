@@ -4,6 +4,7 @@ import '../css/ActivityBtn.css'
 const ActivityBtn = (props) =>  {
 
   const [num_votes, setNumVotes] = useState(props.num_votes)
+  const API_URL = process.env.NODE_ENV === 'production' ? 'https://onthefly-server.up.railway.app' : ''
 
   const updateCount = () => {
     const options = {
@@ -14,7 +15,7 @@ const ActivityBtn = (props) =>  {
       body: JSON.stringify({num_votes: num_votes + 1})
     }
   
-    fetch('/api/activities/' + props.id, options)
+    fetch(`${API_URL}/api/activities/${props.id}`, options)
     setNumVotes((num_votes) => num_votes + 1)
   }
 
